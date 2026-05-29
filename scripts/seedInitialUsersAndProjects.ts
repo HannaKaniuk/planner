@@ -13,19 +13,12 @@ const seedUsers = [
 ];
 
 const seedProjects = [
-	{ value: "cdl", label: "CDL" },
-	{ value: "president", label: "Президент" },
-	{ value: "exchange", label: "Обменник" },
-	{ value: "laitek", label: "Лайтек" },
-	{ value: "tether", label: "Tether" },
-	{ value: "trains", label: "Поезда" },
-	{ value: "sgcb", label: "SGCB" },
-	{ value: "planner", label: "Planner" },
-	{ value: "kids", label: "Дети" },
-	{ value: "kpa", label: "КПА" },
-	{ value: "dallas", label: "Dallas" },
-	{ value: "calc", label: "Калькулятор" },
-	{ value: "course", label: "обучение" },
+	{ value: "project-1", label: "Project1" },
+	{ value: "project-2", label: "Project2" },
+	{ value: "project-3", label: "Project3" },
+	{ value: "project-4", label: "Project4" },
+	{ value: "project-5", label: "Project5" },
+	{ value: "project-6", label: "Project6" },
 ];
 
 const main = async () => {

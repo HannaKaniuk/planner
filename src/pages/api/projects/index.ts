@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Project } from "@/entities/Project.entity";
+import { ensureMockProjectsForScope } from "@/lib/ensureMockProjects";
 import { getORM } from "@/lib/database";
 import { getOrCreateSessionId } from "@/lib/session";
 import { resolveRequestScope } from "@/lib/scope";
@@ -8,8 +9,6 @@ const slugify = (label: string): string => {
 	const normalized = label.trim();
 	return normalized.length === 0 ? `project-${Date.now()}` : normalized;
 };
-
-const DEFAULT_SESSION_ID = "seed";
 
 export default async function handler(
 	req: NextApiRequest,
@@ -23,53 +22,9 @@ export default async function handler(
 
 	if (req.method === "GET") {
 		try {
+			await ensureMockProjectsForScope(scope, sessionId);
 			const projects = await em.find(Project, scope.scopeWhere);
-
-			if (projects.length > 0) {
-				return res.status(200).json(projects);
-			}
-
-			const baseProjects = await em.find(Project, {
-				sessionId: DEFAULT_SESSION_ID,
-				roomId: undefined,
-			});
-
-			if (baseProjects.length === 0) {
-				return res.status(200).json([]);
-			}
-
-			const ProjectClass = orm.getMetadata().get("Project").class;
-
-			if (!scope.hasRoomId) {
-				const seededForSession = baseProjects.map((p) =>
-					em.create(ProjectClass, {
-						value: p.value,
-						label: p.label,
-						sessionId,
-						roomId: scope.roomId,
-					}),
-				);
-				em.persist(seededForSession);
-				await em.flush();
-				return res.status(200).json(seededForSession);
-			}
-
-			const sessionProjects = await em.find(Project, { sessionId });
-			const source =
-				sessionProjects.length > 0 ? sessionProjects : baseProjects;
-
-			const seededForRoom = source.map((p) =>
-				em.create(ProjectClass, {
-					value: p.value,
-					label: p.label,
-					sessionId: undefined,
-					roomId: scope.roomId,
-				}),
-			);
-			em.persist(seededForRoom);
-			await em.flush();
-
-			return res.status(200).json(seededForRoom);
+			return res.status(200).json(projects);
 		} catch (error) {
 			console.error("Error fetching projects:", error);
 			return res.status(500).json({ error: "Failed to fetch projects" });
