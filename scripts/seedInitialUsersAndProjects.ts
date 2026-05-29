@@ -4,16 +4,12 @@ import { Project } from "../src/entities/Project.entity";
 import { User } from "../src/entities/User.entity";
 
 const seedUsers = [
-	{ value: "81679226", label: "Дима" },
-	{ value: "81728975", label: "Влад" },
-	{ value: "81679227", label: "Влада" },
-	{ value: "81728978", label: "Леня" },
-	{ value: "87644641", label: "Аня" },
-	{ value: "87886222", label: "Ася" },
-	{ value: "87608164", label: "Максим" },
-	{ value: "93833253", label: "Александра" },
-	{ value: "93670228", label: "Игорь" },
-	{ value: "81676657", label: "Слава" },
+	{ value: "user-1", label: "User1" },
+	{ value: "user-2", label: "User2" },
+	{ value: "user-3", label: "User3" },
+	{ value: "user-4", label: "User4" },
+	{ value: "user-5", label: "User5" },
+	{ value: "user-6", label: "User6" },
 ];
 
 const seedProjects = [

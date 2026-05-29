@@ -6,7 +6,6 @@ export default async function handler(
 ) {
 	res.setHeader("Allow", ["GET"]);
 	return res.status(405).json({
-		error:
-			"User mutations are disabled. Users are synced from ClickUp only.",
+		error: "User mutations are disabled.",
 	});
 }

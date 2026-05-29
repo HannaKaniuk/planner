@@ -21,7 +21,6 @@ import { useUsersStore } from "@/store/usersStore";
 import type { Event, EventFormValues } from "@/types/event";
 import { createShortShareLink, loadSharedState } from "@/utils/shareLink";
 import { colorPalette } from "../mockData";
-import ClickUpSyncButton from "./ClickUpSyncButton";
 import AddEventDialog from "./event-dialog/AddEventDialog";
 import Events from "./events/Events";
 import GridCalendar from "./grid/Index";
@@ -50,7 +49,6 @@ const CalendarIndex: React.FC = () => {
 	const [isResetOpen, setIsResetOpen] = useState(false);
 	const [isCopyOpen, setIsCopyOpen] = useState(false);
 	const [userFilterQuery, setUserFilterQuery] = useState("");
-	const [autoSyncKey, setAutoSyncKey] = useState(0);
 
 	useRoomSocket();
 
@@ -229,7 +227,6 @@ const CalendarIndex: React.FC = () => {
 				useProjectsStore.getState().loadProjects(roomId),
 				useStore.getState().loadEvents(roomId),
 			]);
-			setAutoSyncKey((prev) => prev + 1);
 		})();
 	}, [setEvents, setShowWeekend, roomId, setIsRoomCreator]);
 
@@ -392,8 +389,6 @@ const CalendarIndex: React.FC = () => {
 						>
 							<Users className="h-4 w-4 sm:h-5 sm:w-5" />
 						</Button>
-
-						<ClickUpSyncButton roomId={roomId} autoSyncKey={autoSyncKey} />
 
 						<Button
 							size="icon"

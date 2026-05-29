@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { User } from "@/entities/User.entity";
+import { ensureMockUsersForScope } from "@/lib/ensureMockUsers";
 import { getORM } from "@/lib/database";
 import { getOrCreateSessionId } from "@/lib/session";
 import { resolveRequestScope } from "@/lib/scope";
@@ -17,6 +18,7 @@ export default async function handler(
 
 	if (req.method === "GET") {
 		try {
+			await ensureMockUsersForScope(scope, sessionId);
 			const users = await em.find(
 				User,
 				{ ...scope.scopeWhere, isVisible: true },
