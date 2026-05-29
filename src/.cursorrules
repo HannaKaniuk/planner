@@ -1,0 +1,1 @@
+When writing or editing code, be 100% sure that your changes do not break any existing functionality. Always consider the full project context, existing dependencies, and current logic. Before suggesting any modification, check for compatibility with the current code, and if there’s any risk of breaking something, warn or propose a safe alternative.

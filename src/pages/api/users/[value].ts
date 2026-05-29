@@ -1,0 +1,12 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse,
+) {
+	res.setHeader("Allow", ["GET"]);
+	return res.status(405).json({
+		error:
+			"User mutations are disabled. Users are synced from ClickUp only.",
+	});
+}

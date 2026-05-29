@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  .dark,
+  :root.dark {
+    --background: 240 6% 8%;
+    --foreground: 0 0% 92%;
+    --card: 240 6% 8%;
+    --card-foreground: 0 0% 92%;
+    --popover: 240 6% 8%;
+    --popover-foreground: 0 0% 92%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 0 0% 92%;
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 3% 72%;
+
+    --accent-foreground: 0 0% 95%;
+    --destructive: 0 60% 38%;
+    --destructive-foreground: 0 0% 96%;
+    --border: 240 3% 22%;
+    --input: 240 3% 22%;
+    --ring: 240 4% 70%;
+    --chart-1: 220 60% 52%;
+    --chart-2: 160 50% 48%;
+    --chart-3: 30 70% 57%;
+    --chart-4: 280 60% 60%;
+    --chart-5: 340 65% 57%;
+    --sidebar-background: 240 6% 8%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 224.3 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 90%;
+    --sidebar-border: 240 3% 22%;
+    --sidebar-ring: 217.2 70% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html,
+  body {
+    @apply text-foreground;
+    background: hsl(var(--background));
+    overflow: hidden;
+    height: 100%;
+  }
+  #root {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+@layer utilities {
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (max-width: 768px) {
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+
+    button,
+    a,
+    [role="button"] {
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+}
+@layer base {
+  :root,
+  .dark,
+  :root.dark {
+    --sidebar: oklch(0.22 0 0);
+    --sidebar-foreground: oklch(0.96 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.98 0 0);
+    --sidebar-accent: oklch(0.29 0 0);
+    --sidebar-accent-foreground: oklch(0.96 0 0);
+    --sidebar-border: oklch(1 0 0 / 6%);
+    --sidebar-ring: oklch(0.43 0 0);
+    --sidebar-width: 16rem;
+    --sidebar-width-icon: 3rem;
+  }
+}
